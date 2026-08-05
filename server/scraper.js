@@ -80,13 +80,21 @@ async function scrapeBook(url, emit) {
   try {
     browser = await puppeteer.launch({
       headless: "new",
+      // Use system Chromium in production (set via PUPPETEER_EXECUTABLE_PATH in Dockerfile)
+      ...(process.env.PUPPETEER_EXECUTABLE_PATH && {
+        executablePath: process.env.PUPPETEER_EXECUTABLE_PATH,
+      }),
       args: [
         "--no-sandbox",
         "--disable-setuid-sandbox",
         "--disable-dev-shm-usage",
         "--disable-gpu",
+        "--single-process",
+        "--no-zygote",
+        "--disable-extensions",
       ],
     });
+
 
     const page = await browser.newPage();
     await page.setUserAgent(MOBILE_UA);
