@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Google Books PDF Downloader</title>
+    <meta
+      name="description"
+      content="Konversi halaman preview Google Books menjadi satu file PDF. Cukup paste URL, download PDF."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- ambient background blobs -->
+    <div class="bg-blob blob-1"></div>
+    <div class="bg-blob blob-2"></div>
+    <div class="bg-blob blob-3"></div>
+
+    <main class="container">
+      <div class="card" id="main-card">
+        <!-- header -->
+        <header class="card-header">
+          <div class="logo-icon">
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="none">
+              <rect x="4" y="2" width="16" height="20" rx="2" stroke="currentColor" stroke-width="1.5"/>
+              <path d="M8 6h8M8 10h8M8 14h5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+              <path d="M16 22l3-3-3-3" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <h1>Google Books <span class="accent">PDF</span></h1>
+          <p class="tagline">Preview → satu file PDF yang rapi</p>
+        </header>
+
+        <!-- url input -->
+        <form id="scrape-form" autocomplete="off">
+          <div class="input-group">
+            <input
+              id="url-input"
+              type="url"
+              placeholder="Paste link Google Books di sini..."
+              required
+              autofocus
+            />
+            <button id="submit-btn" type="submit">
+              <span class="btn-text">Download</span>
+              <span class="btn-loader hidden">
+                <span class="spinner"></span>
+              </span>
+            </button>
+          </div>
+          <p class="hint">
+            Contoh: https://books.google.com/books?id=...
+          </p>
+        </form>
+
+        <!-- progress section -->
+        <section id="progress-section" class="progress-section hidden">
+          <div class="progress-header">
+            <span id="book-title" class="book-title">—</span>
+            <span id="stage-badge" class="stage-badge">Memindai</span>
+          </div>
+          <p id="status-message" class="status-message">Memulai...</p>
+          <div class="progress-track">
+            <div id="progress-fill" class="progress-fill"></div>
+          </div>
+          <div class="progress-meta">
+            <span id="progress-count">0 / 0</span>
+            <span id="progress-percent">0%</span>
+          </div>
+        </section>
+
+        <!-- download result -->
+        <section id="download-section" class="download-section hidden">
+          <div class="success-icon">✓</div>
+          <p class="success-title">PDF berhasil dibuat!</p>
+          <p id="result-info" class="result-info">—</p>
+          <a id="download-link" class="download-btn" download>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+              <path d="M12 3v14m0 0l-5-5m5 5l5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M5 20h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+            Download PDF
+          </a>
+          <button id="new-btn" class="new-btn" type="button">Buat lagi</button>
+        </section>
+
+        <!-- error -->
+        <section id="error-section" class="error-section hidden">
+          <p id="error-message" class="error-message"></p>
+          <button id="retry-btn" class="new-btn" type="button">Coba lagi</button>
+        </section>
+      </div>
+
+      <footer class="footer">
+        <p>Menggunakan mobile User-Agent untuk mendapatkan lebih banyak halaman preview.</p>
+      </footer>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>
