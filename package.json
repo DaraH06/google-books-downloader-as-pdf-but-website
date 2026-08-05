@@ -4,10 +4,10 @@
   "description": "Website untuk mengonversi halaman preview Google Books menjadi satu file PDF.",
   "main": "server/index.js",
   "scripts": {
-    "start": "node server/index.js",
-    "dev": "node server/index.js",
-    "postinstall:ext": "node scripts/copy-pdf-lib.js",
-    "icons": "node scripts/create-icons.js"
+    "start": "node server/index.js"
+  },
+  "engines": {
+    "node": ">=20"
   },
   "keywords": [],
   "author": "",
